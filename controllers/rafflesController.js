@@ -1,3 +1,5 @@
+// rafflesController.js
+
 const express = require('express');
 const router = express.Router();
 const rafflesQueries = require('../queries/rafflesQueries');
