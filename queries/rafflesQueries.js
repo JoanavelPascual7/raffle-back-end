@@ -1,6 +1,5 @@
 const db = require('../db/dbConfig');
 
-
 module.exports = {
   getAllRaffles: async () => {
     try {
@@ -25,7 +24,7 @@ module.exports = {
   },
   getRaffleParticipants: async (raffleId) => {
     try {
-      return await db.any('SELECT * FROM participants WHERE raffle_id = $1', [raffleId]);
+      return await db.any('SELECT participants.* FROM participants INNER JOIN raffle_participants ON participants.id = raffle_participants.participant_id WHERE raffle_participants.raffle_id = $1', [raffleId]);
     } catch (error) {
       throw new Error('Error fetching participants for raffle: ' + error.message);
     }
@@ -33,7 +32,7 @@ module.exports = {
   addParticipantToRaffle: async (raffleId, participant) => {
     const { firstname, lastname, email, phone } = participant;
     try {
-      return await db.one('INSERT INTO participants (raffle_id, firstname, lastname, email, phone) VALUES ($1, $2, $3, $4, $5) RETURNING *', [raffleId, firstname, lastname, email, phone]);
+      return await db.one('INSERT INTO participants (firstname, lastname, email, phone) VALUES ($1, $2, $3, $4) RETURNING *', [firstname, lastname, email, phone]);
     } catch (error) {
       throw new Error('Error adding participant to raffle: ' + error.message);
     }
