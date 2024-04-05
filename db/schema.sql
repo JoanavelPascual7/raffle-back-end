@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS raffle_participants;
+DROP TABLE IF EXISTS participants;
+DROP TABLE IF EXISTS raffles;
 
 CREATE TABLE raffles (
     id SERIAL PRIMARY KEY,  
