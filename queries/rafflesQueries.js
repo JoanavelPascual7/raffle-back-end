@@ -37,6 +37,7 @@ module.exports = {
       throw new Error('Error adding participant to raffle: ' + error.message);
     }
   },
+
   pickWinner: async (raffleId, secret_token) => {
     // logic to pick a winner
   },
