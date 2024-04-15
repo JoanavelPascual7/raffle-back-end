@@ -1,6 +1,3 @@
-DROP TABLE IF EXISTS raffle_participants;
-DROP TABLE IF EXISTS participants;
-DROP TABLE IF EXISTS raffles;
 
 CREATE TABLE raffles (
     id SERIAL PRIMARY KEY,  
@@ -17,10 +14,9 @@ CREATE TABLE participants (
 );
 
 CREATE TABLE raffle_participants (
-    raffle_id SERIAL,
-    participant_id SERIAL,
+    raffle_id INT,
+    participant_id INT,
     FOREIGN KEY (raffle_id) REFERENCES raffles(id),
     FOREIGN KEY (participant_id) REFERENCES participants(id),
     PRIMARY KEY (raffle_id, participant_id)
 );
-
